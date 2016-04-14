@@ -41,12 +41,26 @@ class Udacidata
     self.all.find{|product| product.id == id}
   end
 
-  private
+  def self.destroy(id)
+    product = self.find(id)
+    self.remove_from_db(id)
+    product
+  end
+
+  # Helper methods
   def save
     CSV.open($datafile_path,'ab') do |csv|
       csv << [self.id, self.brand, self.name, self.price]
     end
   end
 
-
+  def self.remove_from_db(id)
+    db = CSV.table($datafile_path)
+    db.delete_if do |row|
+      row[:id] == id
+    end
+    File.open($datafile_path,'w') do |file|
+      file.write(db.to_csv)
+    end
+  end
 end
