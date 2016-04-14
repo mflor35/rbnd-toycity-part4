@@ -33,4 +33,13 @@ class Udacidata
       list_products[n-1]
     end
   end
+
+  def self.last(n=1)
+    list_products = self.all
+    if(n > 1 && n < list_products.length)
+      list_products[n..-1]
+    else
+      list_products[-1]
+    end
+  end
 end

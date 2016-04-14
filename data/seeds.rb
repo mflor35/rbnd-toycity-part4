@@ -5,7 +5,7 @@ require 'faker'
 
 def db_seed
   # Your code goes here!
-  20.times do
+  6.times do
     Product.create(brand: Faker::Company.name,
                    name: Faker::Commerce.product_name,
                    price: Faker::Commerce.price)
