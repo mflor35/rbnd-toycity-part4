@@ -11,12 +11,6 @@ class Udacidata
     data_entry
   end
 
-  def save
-    CSV.open($datafile_path,'ab') do |csv|
-      csv << [self.id, self.brand, self.name, self.price]
-    end
-  end
-
   def self.all
     list_products = []
     CSV.read($datafile_path).drop(1).each do |row|
@@ -46,5 +40,13 @@ class Udacidata
   def self.find(id)
     self.all.find{|product| product.id == id}
   end
+
+  private
+  def save
+    CSV.open($datafile_path,'ab') do |csv|
+      csv << [self.id, self.brand, self.name, self.price]
+    end
+  end
+
 
 end
