@@ -33,6 +33,4 @@ class Udacidata
       list_products[n-1]
     end
   end
-
-
 end
