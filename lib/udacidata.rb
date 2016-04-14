@@ -42,4 +42,9 @@ class Udacidata
       list_products[-1]
     end
   end
+
+  def self.find(id)
+    self.all.find{|product| product.id == id}
+  end
+
 end
