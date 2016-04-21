@@ -11,7 +11,10 @@ class Udacidata
     data_entry
   end
 
+  create_finder_methods('id','brand','name','price')
+
   def self.all
+
     list_products = []
     CSV.read($datafile_path).drop(1).each do |row|
       list_products << self.new(id: row[0], brand: row[1], name: row[2], price: row[3])
@@ -59,8 +62,10 @@ class Udacidata
     db.delete_if do |row|
       row[:id] == id
     end
+
     File.open($datafile_path,'w') do |file|
       file.write(db.to_csv)
     end
   end
+
 end
