@@ -12,4 +12,12 @@ module Analyzable
     " "
   end
 
+  def count_by_brand(list_products)
+    {list_products[0].brand => list_products.length}
+  end
+
+  def count_by_name(list_products)
+    {list_products[0].name => list_products.length}
+  end
+
 end
