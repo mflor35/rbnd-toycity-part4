@@ -9,7 +9,17 @@ module Analyzable
   end
 
   def print_report(list_products)
-    " "
+    report = ""
+    header = "|%2s|%10s|%15s|%10s|\n"%["ID","Brand","Name","Price"]
+    dashes = '-'*(header.length-1)
+    report += dashes + "\n"
+    report += header
+    report += dashes + "\n"
+    list_products.each do |product|
+      report += "|%2s|%10s|%15s|%10s|\n"%["#{product.id}","#{product.brand}","#{product.name}","#{product.price}"]
+    end
+    report += dashes + "\n"
+    report
   end
 
   def count_by_brand(list_products)
