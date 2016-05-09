@@ -50,6 +50,30 @@ class Udacidata
     product
   end
 
+  def self.where(args={})
+    result = []
+    args.each do |key,value|
+      result << self.all.find{|product| product.send(key) == value}
+    end
+    result
+  end
+
+  def update(args={})
+    data = Product.all
+    args.each do |key, value|
+      self.send("#{key}=",value) if self.respond_to?(key)
+    end
+
+    CSV.open($datafile_path, 'wb') do |csv|
+      csv << ["id", "brand", "product", "price"]
+      data.each do |item|
+        item = self if item.id == self.id
+        csv << [item.id, item.brand, item.name, item.price]
+      end
+    end
+    self
+  end
+
   # Helper methods
   def save
     CSV.open($datafile_path,'ab') do |csv|
