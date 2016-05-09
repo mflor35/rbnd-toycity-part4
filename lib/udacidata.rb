@@ -22,11 +22,10 @@ class Udacidata
   end
 
   def self.first(n=1)
-    list_products = self.all
-    if(n > 1 && n < list_products.length)
-      list_products[0..(n-1)]
+    if n == 1
+      self.all.first
     else
-      list_products[n-1]
+      self.all.first(n)
     end
   end
 

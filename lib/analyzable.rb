@@ -21,7 +21,7 @@ module Analyzable
 
   def count_by_brand(list_products)
     result = {}
-    Product.all.each do |item|
+    list_products.each do |item|
       if !result.keys.include?(item.brand)
         result[item.brand] = 1
       else
@@ -33,7 +33,7 @@ module Analyzable
 
   def count_by_name(list_products)
     result = {}
-    Product.all.each do |item|
+    list_products.each do |item|
       if !result.keys.include?(item.name)
         result[item.name] = 1
       else
