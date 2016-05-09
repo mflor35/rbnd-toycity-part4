@@ -53,7 +53,11 @@ class Udacidata
   def self.where(args={})
     result = []
     args.each do |key,value|
-      result << self.all.find{|product| product.send(key) == value}
+      self.all.each do |product|
+        if product.send(key) == value
+          result << product
+        end
+      end
     end
     result
   end
