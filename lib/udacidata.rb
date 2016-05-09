@@ -41,7 +41,9 @@ class Udacidata
   end
 
   def self.find(id)
+    raise ProductNoFoundError, "No Product with #{id}" +  " found." unless self.all.length > id
     self.all.find{|product| product.id == id}
+
   end
 
   def self.destroy(id)
