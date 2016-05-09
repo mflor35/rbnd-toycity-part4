@@ -31,11 +31,10 @@ class Udacidata
   end
 
   def self.last(n=1)
-    list_products = self.all
-    if(n > 1 && n < list_products.length)
-      list_products[n..-1]
+    if n == 1
+      self.all.last
     else
-      list_products[-1]
+      self.all.last(n)
     end
   end
 
