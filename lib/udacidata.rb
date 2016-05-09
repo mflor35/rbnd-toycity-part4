@@ -14,7 +14,6 @@ class Udacidata
   create_finder_methods('id','brand','name','price')
 
   def self.all
-
     list_products = []
     CSV.read($datafile_path).drop(1).each do |row|
       list_products << self.new(id: row[0], brand: row[1], name: row[2], price: row[3])
@@ -41,9 +40,9 @@ class Udacidata
   end
 
   def self.find(id)
-    raise ProductNoFoundError, "No Product with #{id}" +  " found." unless self.all.length > id
-    self.all.find{|product| product.id == id}
-
+    found = self.all.find{|product| product.id == id}
+    raise ProductNoFoundError, "No Product with #{id}" +  " found." if found.nil?
+    found
   end
 
   def self.destroy(id)
