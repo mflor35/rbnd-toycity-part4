@@ -8,4 +8,8 @@ module Analyzable
     (sum/list_items.length).round(2)
   end
 
+  def print_report(list_products)
+    " "
+  end
+
 end
